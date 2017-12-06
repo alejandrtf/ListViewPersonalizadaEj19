@@ -34,46 +34,27 @@ public class EquipoAdaptador extends ArrayAdapter<Equipo> {
     @NonNull
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // declaro variable ViewHolder
-        EquipoHolder holder = null;
-        // recojo el valor de convertView
-        View item = convertView;
+        View item;
+        // En primer lugar "inflamos" una nueva vista
+        LayoutInflater inflater = LayoutInflater.from(context);
+        item = inflater.inflate(R.layout.item_lista_equipos, null);
 
-        if (item == null) {
-            // Nunca se infló la vista aún.
-            // En primer lugar "inflamos" una nueva vista
-            LayoutInflater inflater = LayoutInflater.from(context);
-            item = inflater.inflate(R.layout.item_lista_equipos, null);
-            // Instanciamos el ViewHolder y almacenamos las referencias a sus 3
-            // hijos
-            holder = new EquipoHolder();
-            holder.escudo = (ImageView) item.findViewById(R.id.ivEscudoItem);
-            holder.nombreEquipo = (TextView) item.findViewById(R.id.tvNombreEquipoItem);
-            holder.puntosEquipo = (TextView) item.findViewById(R.id.tvPuntosEquipoItem);
-            // guardamos el holder en la vista item
-            item.setTag(holder);
-        } else {
-            // obtenemos el ViewHolder guardado previamente, para tener acceso
-            // rápido a los TextView
-            holder = (EquipoHolder) item.getTag();
-        }
+        ImageView escudo = (ImageView) item.findViewById(R.id.ivEscudoItem);
+        TextView nombreEquipo = (TextView) item.findViewById(R.id.tvNombreEquipoItem);
+        TextView puntosEquipo = (TextView) item.findViewById(R.id.tvPuntosEquipoItem);
 
         //Asignamos los datos correspondientes la equipo de la posición position
 
         // asignamos el escudo.
-        holder.escudo.setImageResource(datos.get(position).getImagenEscudoID());
+        escudo.setImageResource(datos.get(position).getImagenEscudoID());
         // asignamos el nombre
-        holder.nombreEquipo.setText(datos.get(position).getNombreEquipo());
+        nombreEquipo.setText(datos.get(position).getNombreEquipo());
         // asignamos los puntos
-        holder.puntosEquipo.setText(String.valueOf(datos.get(position).getPuntos()));
+        puntosEquipo.setText(String.valueOf(datos.get(position).getPuntos()));
 
         // Devolvemos la vista para que se muestre en el ListView.
         return item;
     }
 
-    static class EquipoHolder {
-        ImageView escudo;
-        TextView nombreEquipo;
-        TextView puntosEquipo;
-    }
+
 }
