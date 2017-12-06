@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Tutoria2APP4</string>
+    <string name="titulo">EQUIPOS  1ª DIVISIÓN</string>
+    <string name="labelEquipo">EQUIPO:</string>
+    <string name="labelPuestoEquipo">Clasificación en la liga:</string>
+</resources>
